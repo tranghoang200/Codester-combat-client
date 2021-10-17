@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'https://48p1r2roz4.sse.codesandbox.io',
+  uri: 'http://127.0.0.1:8001',
   cache: new InMemoryCache(),
 });
 

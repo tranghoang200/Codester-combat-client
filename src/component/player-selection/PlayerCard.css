@@ -1,18 +1,17 @@
 .playerCard {
-    background: rgba(53, 63, 74, 0.95);
-    height: 460px;
-    width: 14rem;
-    margin: 15px;
-    color: white;
-    border-radius: 20px;
-    padding: 14px;
-    text-align: center;
+  background: rgba(53, 63, 74, 0.95);
+  height: 460px;
+  width: 14rem;
+  margin: 15px;
+  color: white;
+  border-radius: 20px;
+  padding: 14px;
+  text-align: center;
 }
 
 .cardContainer {
-    justify-content: center;
-    display: flex;
-
+  justify-content: center;
+  display: flex;
 }
 
 .imgContainer {
@@ -24,8 +23,7 @@
     
 }
 .cardBody {
-    justify-content: center;
-    
+  justify-content: center;
 }
 .cardImg {
     position: relative;
@@ -45,16 +43,17 @@
 }
 
 .skill {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 .chooseButton {
-    background-color:black;
-    border-radius: 20px;
-    border: 2px solid white;
-    color: white
+  background-color: black;
+  border-radius: 20px;
+  border: 2px solid white;
+  color: white;
 }
 .chooseButton:hover {
-    background-color:rgba(53, 63, 74, 0.95);
-    color: white;
-    box-shadow: rgba(207, 196, 223, 0.3) 0px 15px 38px, rgba(190, 178, 197, 0.22) 0px 13px 12px;
+  background-color: rgba(53, 63, 74, 0.95);
+  color: white;
+  box-shadow: rgba(207, 196, 223, 0.3) 0px 15px 38px,
+    rgba(190, 178, 197, 0.22) 0px 13px 12px;
 }

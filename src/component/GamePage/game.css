@@ -1,0 +1,67 @@
+.skillButton {
+  background-color: #1a1e2c;
+  border: 2px solid white;
+  border-radius: 20px;
+  color: white;
+}
+
+.skillButton:hover {
+  background-color: white;
+  color: black;
+}
+
+.centerItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.iconSpacing {
+  margin-right: 5px;
+}
+
+.section {
+  background-color: #1e1e1e;
+  margin-top: 10px;
+}
+
+.split {
+  display: flex;
+  flex-direction: row;
+}
+
+.gutter {
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+  background-color: #1e1e1e;
+  cursor: col-resize;
+}
+
+.runCodeBtn {
+  background-color: #1a1e2c;
+  border: 2px solid white;
+  color: white;
+  margin-right: 10px;
+}
+
+.runCodeBtn:hover {
+  background-color: white;
+  color: black;
+}
+
+.player2 {
+  position: absolute;
+  right: 20%;
+  bottom: 10%;
+}
+
+.player1 {
+  position: absolute;
+  left: 20%;
+  bottom: 10%;
+}

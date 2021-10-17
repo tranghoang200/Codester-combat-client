@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import * as ROUTES from './routes';
-import gamePage from './component/game';
+import * as ROUTES from './Constant/routes';
+import gamePage from './component/GamePage/gamePage';
 import SelectionScreen from './component/player-selection/SelectionScreen';
 import MatchingScreen from './component/matching/MatchingScreen';
 
