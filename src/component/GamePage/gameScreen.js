@@ -1,5 +1,5 @@
 import {Client} from 'boardgame.io/react';
-import {CodesterCombat} from './Game';
+import {CodesterCombat} from './game';
 import {Board} from './Board';
 import {SocketIO} from 'boardgame.io/multiplayer';
 

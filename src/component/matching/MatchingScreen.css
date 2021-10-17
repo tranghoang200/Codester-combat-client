@@ -3,8 +3,6 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /* background-size: cover;
-    background-repeat: no-repeat; */
     font-size: 3rem;
     background: radial-gradient(ellipse at bottom, #0D1E31, #111);
     overflow: hidden;

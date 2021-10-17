@@ -31,7 +31,7 @@
     height: 130px;
     width: 80px;
 }
-.cardImg:hover {
+.card:hover .cardImg {
     animation: jump 700ms infinite;
     cursor: pointer;
 }
