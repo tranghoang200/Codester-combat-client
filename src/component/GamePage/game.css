@@ -65,3 +65,32 @@
   left: 20%;
   bottom: 10%;
 }
+
+.gameBoard {
+  height: 45vh;
+  width: 100vw;
+  position: relative;
+}
+
+@keyframes mymove {
+  from {
+    left: 20%;
+  }
+  to {
+    right: 20%;
+  }
+}
+
+.shuriken {
+  visibility: hidden;
+  position: absolute;
+  left: 20%;
+  bottom: 13%;
+  animation: mymove 2s infinite;
+}
+
+.skill1-player1 {
+  visibility: visible;
+
+  animation-timing-function: ease;
+}
