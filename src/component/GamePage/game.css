@@ -38,7 +38,7 @@
 }
 
 .gutter.gutter-horizontal {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+  background-color: #1e1e1e;
   cursor: col-resize;
 }
 
@@ -52,4 +52,16 @@
 .runCodeBtn:hover {
   background-color: white;
   color: black;
+}
+
+.player2 {
+  position: absolute;
+  right: 20%;
+  bottom: 10%;
+}
+
+.player1 {
+  position: absolute;
+  left: 20%;
+  bottom: 10%;
 }

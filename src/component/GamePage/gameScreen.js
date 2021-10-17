@@ -1,10 +1,7 @@
-import React from 'react';
-import backgroundGame from '../../img/backgroundImage.png';
+import {Client} from 'boardgame.io/react';
+import {CodesterCombat} from './Game';
+import {Board} from './Board';
 
-const GameScreen = () => (
-  <div
-    style={{height: '45vh', backgroundImage: `url(${backgroundGame})`}}
-  ></div>
-);
+const GameScreen = Client({game: CodesterCombat, board: Board});
 
 export default GameScreen;

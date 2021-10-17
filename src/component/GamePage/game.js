@@ -1,92 +1,66 @@
-import React, {useState} from 'react';
-import GameScreen from './gameScreen';
-import {
-  Row,
-  Col,
-  Container,
-  Button,
-  Image,
-  Tabs,
-  Tab,
-  Form,
-} from 'react-bootstrap';
-import ProblemCodingSection from './problemCodingSection';
-import './game.css';
-import skill1Icon from '../../img/skill1.png';
+import {INVALID_MOVE} from 'boardgame.io/core';
 
-const GamePage = () => {
-  const [key, setKey] = useState('input');
-  const [output, setOutput] = useState('');
-  const [input, setInput] = useState('');
+// Return true if `cells` is in a winning configuration.
+function IsVictory(cells) {
+  const positions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
 
-  return (
-    <div>
-      <GameScreen />
-      <Row style={{height: '55vh'}}>
-        <Col md={8}>
-          <ProblemCodingSection input={input} setOutput={setOutput} />
-        </Col>
-        <Col md={4}>
-          <div>
-            <Container className="section" style={{paddingTop: '5%'}}>
-              <Row>
-                <Col className="centerItem">
-                  <Button variant="dark" bsPrefix="btn skillButton">
-                    <Image src={skill1Icon} className="iconSpacing" />
-                    Skill 1
-                  </Button>
-                  <p>Dam: 20</p>
-                </Col>
-                <Col className="centerItem">
-                  <Button variant="dark" bsPrefix="btn skillButton">
-                    <Image src={skill1Icon} className="iconSpacing" />
-                    Skill 2
-                  </Button>
-                  <p>Dam: 30</p>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="centerItem">
-                  <Button variant="dark" bsPrefix="btn skillButton">
-                    <Image src={skill1Icon} className="iconSpacing" />
-                    Skill 1
-                  </Button>
-                  <p>+30 HP</p>
-                </Col>
-                <Col className="centerItem">
-                  <Button variant="dark" bsPrefix="btn skillButton">
-                    <Image src={skill1Icon} className="iconSpacing" />
-                    Skill 1
-                  </Button>
-                  <p>-15 Dam</p>
-                </Col>
-              </Row>
-            </Container>
-          </div>
-          <div className="section" style={{height: '10%'}}>
-            <Tabs
-              id="controlled-tab-example"
-              activeKey={key}
-              onSelect={(k) => setKey(k)}
-              className="mb-3"
-            >
-              <Tab eventKey="input" title="Input">
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                />
-              </Tab>
-              <Tab eventKey="output" title="Output">
-                {output}
-              </Tab>
-            </Tabs>
-          </div>
-        </Col>
-      </Row>
-    </div>
-  );
+  const isRowComplete = (row) => {
+    const symbols = row.map((i) => cells[i]);
+    return symbols.every((i) => i !== null && i === symbols[0]);
+  };
+
+  return positions.map(isRowComplete).some((i) => i === true);
+}
+
+// Return true if all `cells` are occupied.
+function IsDraw(cells) {
+  return cells.filter((c) => c === null).length === 0;
+}
+
+export const CodesterCombat = {
+  setup: () => ({cells: Array(9).fill(null)}),
+
+  turn: {
+    minMoves: 1,
+    maxMoves: 1,
+  },
+
+  moves: {
+    clickCell: (G, ctx, id) => {
+      if (G.cells[id] !== null) {
+        return INVALID_MOVE;
+      }
+      G.cells[id] = ctx.currentPlayer;
+    },
+  },
+
+  endIf: (G, ctx) => {
+    if (IsVictory(G.cells)) {
+      return {winner: ctx.currentPlayer};
+    }
+    if (IsDraw(G.cells)) {
+      return {draw: true};
+    }
+  },
+
+  ai: {
+    enumerate: (G, ctx) => {
+      let moves = [];
+      for (let i = 0; i < 9; i++) {
+        if (G.cells[i] === null) {
+          moves.push({move: 'clickCell', args: [i]});
+        }
+      }
+      return moves;
+    },
+  },
 };
-
-export default GamePage;
