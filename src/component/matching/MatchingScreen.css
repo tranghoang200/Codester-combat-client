@@ -75,50 +75,50 @@
 .star:nth-child(1){
     top: calc(50% - 100px);
     left: calc(50% - 250px);
-    animation-delay: 1s;
+    animation-delay: 0.1s;
 }
 .star:nth-child(1)::before, .star:nth-child(1)::after {
-    animation-delay: 1s;
+    animation-delay: 0.1s;
 }
 .star:nth-child(2){
     top: calc(50% - 50px);
-    left: calc(50% - 250px);
-    animation-delay: 0.8s;
+    left: calc(55% - 250px);
+    animation-delay: 0.4s;
 }
 .star:nth-child(2)::before, .star:nth-child(2)::after {
-    animation-delay: 1s;
+    animation-delay: 0.6s;
 }
 .star:nth-child(3){
     top: calc(50% - 0px);
-    left: calc(50% - 250px);
-    animation-delay: 1s;
+    left: calc(56% - 250px);
+    animation-delay: 0.3s;
 }
 .star:nth-child(3)::before, .star:nth-child(3)::after {
-    animation-delay: 1.4s;
+    animation-delay: 0.6s;
 }
 .star:nth-child(4){
     top: calc(50% - -50px);
-    left: calc(50% - 250px);
-    animation-delay: 1.6s;
+    left: calc(43% - 250px);
+    animation-delay: 0.6s;
 }
 .star:nth-child(4)::before, .star:nth-child(4)::after {
-    animation-delay: 1.2s;
+    animation-delay: 0.9s;
 }
 .star:nth-child(5){
     top: calc(50% - -100px);
-    left: calc(50% - 250px);
-    animation-delay: 1.8s;
+    left: calc(58% - 250px);
+    animation-delay: 0.2s;
 }
 .star:nth-child(5)::before, .star:nth-child(5)::after {
-    animation-delay: 2s;
+    animation-delay: 0.6s;
 }
 .star:nth-child(6){
     top: calc(50% - -150px);
-    left: calc(50% - 250px);
+    left: calc(57% - 250px);
     animation-delay: 0.8s;
 }
 .star:nth-child(6)::before, .star:nth-child(6)::after {
-    animation-delay: 1.4s;
+    animation-delay: 1.3s;
 }
 
 
