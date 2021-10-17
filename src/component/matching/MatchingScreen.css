@@ -1,0 +1,76 @@
+.matchingScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-size: 3rem;
+}
+
+.matchingText {
+    position: relative;
+    padding-top: 50px;
+    color: white;
+    width: 300px;
+    justify-content: center;
+    display:flex;
+    align-items: center;
+  }
+  .matchingText div {
+    animation: matchingText 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .matchingText div:nth-child(1) {
+    left: 0px;
+    animation-delay: -0.24s;
+  }
+  .matchingText div:nth-child(2) {
+    left: 4px;
+    animation-delay: -0.12s;
+  }
+  .matchingText div:nth-child(3) {
+    left: 8px;
+    animation-delay: 0;
+  }
+  .matchingText div:nth-child(4) {
+    left: 12px;
+    animation-delay: -0.24s;
+  }
+  .matchingText div:nth-child(5) {
+    left: 16px;
+    animation-delay: -0.12s;
+  }
+  .matchingText div:nth-child(6) {
+    left: 20px;
+    animation-delay: 0;
+  }
+  .matchingText div:nth-child(7) {
+    left: 24px;
+    animation-delay: -0.24s;
+  }
+  .matchingText div:nth-child(8) {
+    left: 28px;
+    animation-delay: -0.12s;
+  }
+  .matchingText div:nth-child(9) {
+    left: 32px;
+    animation-delay: 0;
+  }
+  .matchingText div:nth-child(10) {
+    left: 36px;
+    animation-delay: -0.24s;
+  }
+  .matchingText div:nth-child(11) {
+    left: 40px;
+    animation-delay: -0.12s;
+  }
+  @keyframes matchingText {
+    0% {
+      top: 8px;
+      height: 64px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 32px;
+    }
+  }

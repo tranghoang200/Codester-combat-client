@@ -72,6 +72,7 @@ function SelectionScreen() {
             <PlayerCard
               src={character.imgSrc}
               name={character.name}
+              // key={character.name}
               skill1={character.skill1}
               skill2={character.skill2}
               heal={character.heal}
