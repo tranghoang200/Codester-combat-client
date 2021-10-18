@@ -11,6 +11,8 @@ const LobbyPage = () => {
   console.log(state);
   useEffect(() => {
     dispatch({ type: 'updateUserId', payload: '616d75c43bdf7fee0e2715f4' });
+    dispatch({ type: 'updatePlayer1Id', payload: '616d75c43bdf7fee0e2715f4' });
+    dispatch({ type: 'updatePlayer2Id', payload: '616d75ea3bdf7fee0e2715f9' });
   }, []);
   return (
     <div className='lobby-container'>

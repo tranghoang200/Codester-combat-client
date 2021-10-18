@@ -13,6 +13,9 @@ function countReducer(state, action) {
     case 'updatePlayer2Id': {
       return { ...state, player2Id: action.payload };
     }
+    case 'updateChampId': {
+      return { ...state, userId: action.payload };
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -24,6 +27,7 @@ function GlobalProvider({ children }) {
     userId: '',
     player1Id: '',
     player2Id: '',
+    champId: '',
   });
   // NOTE: you *might* need to memoize this value
   // Learn more in http://kcd.im/optimize-context
