@@ -145,7 +145,8 @@ const ProblemCodingSection = (props) => {
             </Button>
           )}
           {isRunCoding && (
-            <Button variant="success" disabled>
+           
+            <Button variant="success" disabled> 
               Submit Code
             </Button>
           )}

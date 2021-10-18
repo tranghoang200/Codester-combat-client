@@ -144,7 +144,7 @@
 }
 .heal:nth-child(3) {
   bottom: calc(19% - -9px);
-  left: calc(20% - -140px) ;
+  left: calc(20% - -80px) ;
   animation-delay: 0.25s;
 }
 .heal:nth-child(4) {

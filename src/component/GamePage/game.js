@@ -1,5 +1,5 @@
 import {INVALID_MOVE} from 'boardgame.io/core';
-import 'animate.css';
+// import 'animate.css';
 
 // Return true if `cells` is in a winning configuration.
 function IsVictory(cells) {

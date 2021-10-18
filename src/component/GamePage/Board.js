@@ -14,8 +14,10 @@ export class Board extends React.Component {
   onClick(id) {
     this.props.moves.clickCell(id);
   }
-
+  
   render() {
+    
+
     let winner = '';
     if (this.props.ctx.gameover) {
       winner =
