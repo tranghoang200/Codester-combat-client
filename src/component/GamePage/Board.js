@@ -3,6 +3,7 @@ import backgroundGame from '../../img/backgroundImage.png';
 import {Image} from 'react-bootstrap';
 import naruto from '../../img/naruto.png';
 import sakura from '../../img/sakura.png';
+import shuriken from '../../img/Shuriken.png';
 
 export class Board extends React.Component {
   onClick(id) {
@@ -45,13 +46,12 @@ export class Board extends React.Component {
     return (
       <div
         style={{
-          height: '45vh',
-          width: '100vw',
           backgroundImage: `url(${backgroundGame})`,
-          position: 'relative',
         }}
+        className="gameBoard"
       >
         <Image src={naruto} className="player1" />
+        <Image src={shuriken} className="shuriken" id="shuriken" />
         <Image src={sakura} className="player2" />
       </div>
     );

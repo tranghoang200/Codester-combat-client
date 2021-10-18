@@ -21,11 +21,6 @@ function IsVictory(cells) {
   return positions.map(isRowComplete).some((i) => i === true);
 }
 
-// Return true if all `cells` are occupied.
-function IsDraw(cells) {
-  return cells.filter((c) => c === null).length === 0;
-}
-
 export const CodesterCombat = {
   setup: () => ({cells: Array(9).fill(null)}),
 
@@ -35,20 +30,14 @@ export const CodesterCombat = {
   },
 
   moves: {
-    clickCell: (G, ctx, id) => {
-      if (G.cells[id] !== null) {
-        return INVALID_MOVE;
-      }
-      G.cells[id] = ctx.currentPlayer;
+    skill1: (G, ctx, id) => {
+      document.getElementById('shuriken').classList.add('skill1-player1');
     },
   },
 
   endIf: (G, ctx) => {
     if (IsVictory(G.cells)) {
       return {winner: ctx.currentPlayer};
-    }
-    if (IsDraw(G.cells)) {
-      return {draw: true};
     }
   },
 
