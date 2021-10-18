@@ -14,7 +14,7 @@ function App() {
       <Route path={ROUTES.GAME} component={gamePage} />
       <Route path={ROUTES.PLAYER_SELECTION} component={SelectionScreen} />
       <Route path={ROUTES.MATCHING_SCREEN} component={MatchingScreen} />
-      <Route path={ROUTES.VICTORY} component={GameResult} />
+      <Route path={ROUTES.GAME_RESULT} component={GameResult} />
       
     </Router>
   );

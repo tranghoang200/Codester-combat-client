@@ -1,5 +1,7 @@
 import {INVALID_MOVE} from 'boardgame.io/core';
-import 'animate.css';
+import { useQuery } from '@apollo/client';
+import * as user from '../../Constant/graphql/user';
+import * as champ from '../../Constant/graphql/champ';
 
 // Return true if `cells` is in a winning configuration.
 function IsVictory(cells) {
@@ -12,7 +14,7 @@ function IsVictory(cells) {
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6],
-  ];
+  ]; 
 
   const isRowComplete = (row) => {
     const symbols = row.map((i) => cells[i]);
@@ -22,12 +24,56 @@ function IsVictory(cells) {
   return positions.map(isRowComplete).some((i) => i === true);
 }
 
+const GetGameSetUp = () => {
+  const setup = {}
+  const { loading, error, data } = useQuery(user.GET_USER_BY_ID, {
+    variables: { id: localStorage.getItem('player1ID') }
+  });
+  const { loadingChamp, errorChamp, dataChamp } = useQuery(champ.GET_CHAMP_BY_ID, {
+    variables: { id: localStorage.getItem("champID") }
+  });
+
+  if (loading) console.log('Loading ...');
+    else if (error) console.log(error);
+    else {
+      setup["player1"] = data.userById;
+  
+  if (loadingChamp) console.log('Loading ...');
+  else if (errorChamp) console.log(error);
+  else {
+  setup["player1"]["champ"] = dataChamp.champById;
+  }
+
+    }
+  
+    console.log(setup);
+    return setup
+
+
+  // if (loading) console.log('Loading ...');
+  //   else if (error) console.log(error);
+  //   else {
+  //     console.log(data);
+  //     setChampion(data.champById);
+  //   }
+
+    
+}
+
+
 export const CodesterCombat = {
-  setup: () => ({cells: Array(9).fill(null)}),
+  setup: () => (GetGameSetUp()),
+
+  ctx: {
+    turn: 0,
+    currentPlayer: '0',
+    numPlayers: 2
+  },
 
   turn: {
     minMoves: 1,
     maxMoves: 1,
+    // activePlayers: ActivePlayers.ALL
   },
 
   moves: {

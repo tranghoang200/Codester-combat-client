@@ -9,6 +9,7 @@ const GameScreen = Client({
   debug: true,
   numPlayers: 2,
   multiplayer: SocketIO({server: 'localhost:8000'}),
+  matchID: localStorage.getItem("matchID")
 });
 
 export default GameScreen;
