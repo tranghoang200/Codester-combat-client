@@ -1,38 +1,23 @@
 import {gql} from '@apollo/client';
 
 // QUERY
-export const GET_USER = gql`
-  query Query($userId: String) {
-    user(id: $userId) {
-      id
-      name
-      rank {
-        id
-        name
-        createAt
-        updateAt
-      }
-      points
-      createdAt
-      updatedAt
-    }
+export const GET_USER_BY_ID = gql`
+query Query($id: MongoID!) {
+  userById(_id: $id) {
+    name
+    rank
+    points
+    _id
   }
+}
 `;
 
 export const GET_ALL_USERS = gql`
   query Query {
-    users {
-      id
+    userMany {
       name
-      rank {
-        id
-        name
-        createAt
-        updateAt
-      }
+      rank
       points
-      createdAt
-      updatedAt
     }
   }
 `;

@@ -13,6 +13,9 @@ import {
 import ProblemCodingSection from './problemCodingSection';
 import './game.css';
 import skill1Icon from '../../img/skill1.png';
+import healIcon from '../../img/HealSkill.png';
+import shieldIcon from '../../img/ShieldSKill.png';
+import shurikenIcon from '../../img/ShurikenSkill.png';
 import { useQuery } from '@apollo/client';
 import * as champ from '../../Constant/graphql/champ';
 
@@ -48,7 +51,7 @@ const GamePage = () => {
               <Row>
                 <Col className="centerItem">
                   <Button variant="dark" bsPrefix="btn skillButton">
-                    <Image src={skill1Icon} className="iconSpacing" />
+                    <Image src={shurikenIcon} className="iconSpacing" />
                     Skill 1
                   </Button>
                   <p>Dam: {champion.skill1}</p>
@@ -64,14 +67,14 @@ const GamePage = () => {
               <Row>
                 <Col className="centerItem">
                   <Button variant="dark" bsPrefix="btn skillButton">
-                    <Image src={skill1Icon} className="iconSpacing" />
+                    <Image src={healIcon} className="iconSpacing" />
                     Heal
                   </Button>
                   <p>+{champion.heal} HP</p>
                 </Col>
                 <Col className="centerItem">
                   <Button variant="dark" bsPrefix="btn skillButton">
-                    <Image src={skill1Icon} className="iconSpacing" />
+                    <Image src={shieldIcon} className="iconSpacing" />
                     Shield
                   </Button>
                   <p>-{champion.shield} Dam</p>
