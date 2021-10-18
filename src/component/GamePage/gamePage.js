@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import GameScreen from './gameScreen';
 import {
   Row,
@@ -13,63 +13,73 @@ import {
 import ProblemCodingSection from './problemCodingSection';
 import './game.css';
 import skill1Icon from '../../img/skill1.png';
-// import {useQuery} from '@apollo/client';
-// import * as queries from '../../Constant/graphql/user';
+import { useQuery } from '@apollo/client';
+import * as champ from '../../Constant/graphql/champ';
 
 const GamePage = () => {
   const [key, setKey] = useState('input');
   const [output, setOutput] = useState('');
   const [input, setInput] = useState('');
-  // const {loading, error, data} = useQuery(queries.GET_ALL_USERS);
+  const [champion, setChampion] = useState({});
+  console.log(localStorage.getItem('champID'))
+  const { loading, error, data } = useQuery(champ.GET_CHAMP_BY_ID, {
+    variables: { id: localStorage.getItem('champID') },
+  });
 
-  // if (loading) console.log('Loading ...');
-  // else console.log(data);
+  useEffect(() => {
+    if (loading) console.log('Loading ...');
+    else if (error) console.log(error);
+    else {
+      console.log(data);
+      setChampion(data.champById);
+    }
+  }, [data]);
 
   return (
     <div>
       <GameScreen />
-      <Row style={{height: '55vh'}}>
+      <Row style={{ height: '55vh' }}>
         <Col md={8}>
           <ProblemCodingSection input={input} setOutput={setOutput} />
         </Col>
         <Col md={4}>
           <div>
-            <Container className="section" style={{paddingTop: '5%'}}>
+            <Container className="section" style={{ paddingTop: '5%' }}>
               <Row>
                 <Col className="centerItem">
                   <Button variant="dark" bsPrefix="btn skillButton">
                     <Image src={skill1Icon} className="iconSpacing" />
                     Skill 1
                   </Button>
-                  <p>Dam: 20</p>
+                  <p>Dam: {champion.skill1}</p>
                 </Col>
                 <Col className="centerItem">
                   <Button variant="dark" bsPrefix="btn skillButton">
                     <Image src={skill1Icon} className="iconSpacing" />
                     Skill 2
                   </Button>
-                  <p>Dam: 30</p>
+                  <p>Dam: {champion.skill2}</p>
                 </Col>
               </Row>
               <Row>
                 <Col className="centerItem">
                   <Button variant="dark" bsPrefix="btn skillButton">
                     <Image src={skill1Icon} className="iconSpacing" />
-                    Skill 1
+                    Heal
                   </Button>
-                  <p>+30 HP</p>
+                  <p>+{champion.heal} HP</p>
                 </Col>
                 <Col className="centerItem">
                   <Button variant="dark" bsPrefix="btn skillButton">
                     <Image src={skill1Icon} className="iconSpacing" />
-                    Skill 1
+                    Shield
                   </Button>
-                  <p>-15 Dam</p>
+                  <p>-{champion.shield} Dam</p>
                 </Col>
               </Row>
             </Container>
           </div>
-          <div className="section" style={{height: '10%'}}>
+          <div className="section" style={{ height: '10%' }}>
             <Tabs
               id="controlled-tab-example"
               activeKey={key}
