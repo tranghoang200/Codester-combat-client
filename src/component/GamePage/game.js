@@ -1,37 +1,37 @@
-import {ActivePlayers} from 'boardgame.io/core';
+import { ActivePlayers } from 'boardgame.io/core';
 import { useQuery, useMutation } from '@apollo/client';
 import * as game from '../../Constant/graphql/game';
 import * as problem from '../../Constant/graphql/problem';
 
-const setup = {}
+const setup = {};
 
 const GetGameSetUp = async () => {
   const { loading, error, data } = await useQuery(problem.GET_All_PROBLEMS_ID);
 
-
   const { loadingUpdate, errorUpdate, dataUpdate } = await useMutation(
     game.CREATE_GAME,
     {
-      variables: { record: {
-        player1: localStorage.getItem("player1ID"),
-        player2: localStorage.getItem("player2ID"),
-        rank: "616d0a49b799fe8d11303450",
-        problems: data.problemMany.map((item) => item["_id"])
-      }
-      }
+      variables: {
+        record: {
+          player1: localStorage.getItem('player1ID'),
+          player2: localStorage.getItem('player2ID'),
+          rank: '616d0a49b799fe8d11303450',
+          problems: data.problemMany.map((item) => item['_id']),
+        },
+      },
     }
   );
 
   const { loadingGame, errorGame, dataGame } = await useQuery(game.GET_GAME);
 
   if (loadingGame) console.log('Loading ...');
-    else if (errorGame) console.log(errorGame);
-    else {
-      setup = dataGame.gameOne
-    }
-  
-    console.log(setup);
-    return <div></div>;
+  else if (errorGame) console.log(errorGame);
+  else {
+    setup = dataGame.gameOne;
+  }
+
+  console.log(setup);
+  // return <div></div>;
 
   //   console.log(setup);
   return setup;
@@ -44,17 +44,27 @@ const GetGameSetUp = async () => {
   //   }
 };
 
-export const CodesterComba = {
+export const CodesterCombat = {
   // G: () => {<GetGameSetUp />; return setup},
+  setup: () => ({
+    player1: '616d75c43bdf7fee0e2715f4',
+    player2: '616d75ea3bdf7fee0e2715f9',
+    rank: '616d0a49b799fe8d11303450',
+    problems: [
+      '616d6e0b0ffcbe53972b5365',
+      '616d6ff077641366d53fe05c',
+      '616d73083fc0c875597eb866',
+    ],
+  }),
 
   G: {
-    player1 : "616d75c43bdf7fee0e2715f4",
-    player2 : "616d75ea3bdf7fee0e2715f9",
-    rank : "616d0a49b799fe8d11303450",
-    problems : [
-      "616d6e0b0ffcbe53972b5365",
-      "616d6ff077641366d53fe05c",
-      "616d73083fc0c875597eb866"
+    player1: '616d75c43bdf7fee0e2715f4',
+    player2: '616d75ea3bdf7fee0e2715f9',
+    rank: '616d0a49b799fe8d11303450',
+    problems: [
+      '616d6e0b0ffcbe53972b5365',
+      '616d6ff077641366d53fe05c',
+      '616d73083fc0c875597eb866',
     ],
   },
 
@@ -67,7 +77,7 @@ export const CodesterComba = {
   turn: {
     minMoves: 1,
     maxMoves: 1,
-    activePlayers: ActivePlayers.ALL
+    activePlayers: ActivePlayers.ALL,
   },
 
   moves: {
