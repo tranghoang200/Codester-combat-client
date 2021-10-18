@@ -5,6 +5,7 @@ import LobbyPage from './component/LobbyPage/lobby';
 import gamePage from './component/GamePage/gamePage';
 import SelectionScreen from './component/player-selection/SelectionScreen';
 import MatchingScreen from './component/matching/MatchingScreen';
+import GameResult from './component/GameResultPage/gameResult';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <Route path={ROUTES.GAME} component={gamePage} />
       <Route path={ROUTES.PLAYER_SELECTION} component={SelectionScreen} />
       <Route path={ROUTES.MATCHING_SCREEN} component={MatchingScreen} />
+      <Route path={ROUTES.VICTORY} component={GameResult} />
+      
     </Router>
   );
 }
