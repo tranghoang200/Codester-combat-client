@@ -26,11 +26,6 @@ function PlayerCard(props) {
           </Card.Text>
           <Button
             bsPrefix="btn chooseButton"
-            style={{
-              backgroundColor: 'black',
-              borderRadius: '20px',
-              border: '2px solid white',
-            }}
             variant="primary"
           >
             Choose
