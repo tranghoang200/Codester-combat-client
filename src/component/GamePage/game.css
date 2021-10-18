@@ -10,6 +10,13 @@
   color: black;
 }
 
+.skillButtonClicked {
+  border: 2px solid white;
+  border-radius: 20px;
+  background-color: white;
+  color: black;
+}
+
 
 .centerItem {
   display: flex;

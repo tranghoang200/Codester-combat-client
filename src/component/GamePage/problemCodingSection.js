@@ -104,9 +104,18 @@ const ProblemCodingSection = (props) => {
     setIsRunCoding(false);
   };
 
+  const submitAllHandler = () => {
+    const skillData = localStorage.getItem('skill').split(' ');
+    console.log(skillData)
+    localStorage.setItem("activeSkill", skillData[0]);
+    localStorage.setItem("affect", skillData[1])
+  }
+
+  console.log(props.problemContent)
+
   return (
     <Split className="split">
-      <div className="section">Problem:</div>
+      <div className="section">{props.problemContent.content}</div>
       <div className="section" style={{marginLeft: '10px'}}>
         <Row>
           <Col>Language</Col>
@@ -150,7 +159,7 @@ const ProblemCodingSection = (props) => {
               Submit Code
             </Button>
           )}
-          {!isRunCoding && <Button variant="success">Submit Code</Button>}
+          {!isRunCoding && <Button variant="success" onClick={submitAllHandler}>Submit Code</Button>}
         </div>
       </div>
     </Split>

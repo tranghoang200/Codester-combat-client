@@ -1,10 +1,10 @@
 import {Client} from 'boardgame.io/react';
-import {CodesterCombat} from './game';
-import {Board} from './Board';
+import {CodesterComba} from './game';
+import Board from './Board';
 import {SocketIO} from 'boardgame.io/multiplayer';
 
 const GameScreen = Client({
-  game: CodesterCombat,
+  game: CodesterComba, 
   board: Board,
   debug: true,
   numPlayers: 2,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import backgroundGame from '../../img/backgroundImage.png';
 import { Image, ProgressBar, Button } from 'react-bootstrap';
 import naruto from '../../img/naruto.png';
@@ -10,47 +10,103 @@ import skill2naruto from '../../img/Skill2_naruto.png';
 import 'animate.css';
 // import skill2sakura from '../../img/Skill2_sakura.png';
 
-export class Board extends React.Component {
-  onClick(id) {
-    this.props.moves.clickCell(id);
-  }
-  
-  render() {
+const Board = (props) => {
+  // onClick(id) {
+  //   props.moves.clickCell(id);
+  // }
+  const [hp1, sethp1] = useState(100);
+  const [hp2, sethp2] = useState(100);
+  const [test, settest] = useState(localStorage.getItem("activeSkill"))
+
+  useEffect(() => {
+    // if(localStorage.getItem("activeSkill") === 'skill1') {
+    //       props.moves.skill1()
+    //       setTimeout( () => {
+    //         const dam = parseInt(localStorage.getItem("affect"));
+    //       sethp2(hp1 - dam)
+    //       }, 7000) 
+    //     } else if (localStorage.getItem("activeSkill") === 'skill2') {
+    //         props.moves.skill2naruto()
+    //         setTimeout( () => {
+    //           const dam = parseInt(localStorage.getItem("affect"));
+    //         sethp2(hp1 - dam)
+    //         }, 7000) 
+    //     }
+    //     localStorage.setItem("activeSkill", '');
+
+    // function checkUserData() {
+    //   console.log(localStorage.getItem("activeSkill"))
+    //   if(localStorage.getItem("activeSkill") === "skill1") {
+    //     props.moves.skill1()
+    //     setTimeout( () => {
+    //       const dam = parseInt(localStorage.getItem("affect"));
+    //     sethp2(hp1 - dam)
+    //     }, 7000) 
+    //   } else if (localStorage.getItem("activeSkill") === "skill2") {
+    //       props.moves.skill2naruto()
+    //       setTimeout( () => {
+    //         const dam = parseInt(localStorage.getItem("affect"));
+    //       sethp2(hp1 - dam)
+    //       }, 7000) 
+    //   } else {
+    //     console.log("else")
+    //   }
+    // }
+    //   localStorage.setItem("activeSkill", '');
+    // settest("Default Value");
+
+    // checkUserData();
+
+    window.addEventListener("storage", () => {
+      console.log(localStorage.getItem("activeSkill"))
+      if(localStorage.getItem("activeSkill") === "skill1") {
+        props.moves.skill1()
+        setTimeout( () => {
+          const dam = parseInt(localStorage.getItem("affect"));
+        sethp2(hp1 - dam)
+        }, 7000) 
+      } else if (localStorage.getItem("activeSkill") === "skill2") {
+          props.moves.skill2naruto()
+          setTimeout( () => {
+            const dam = parseInt(localStorage.getItem("affect"));
+          sethp2(hp1 - dam)
+          }, 7000) 
+      } else {
+        console.log("else")
+      }
+
+    });
+    
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("activeSkill", '');
+  }, []);
+
     // let winner = '';
-    // if (this.props.ctx.gameover) {
+    // if (props.ctx.gameover) {
     //   winner =
-    //     this.props.ctx.gameover.winner !== undefined ? (
-    //       <div id="winner">Winner: {this.props.ctx.gameover.winner}</div>
+    //     props.ctx.gameover.winner !== undefined ? (
+    //       <div id="winner">Winner: {props.ctx.gameover.winner}</div>
     //     ) : (
     //       <div id="winner">Draw!</div>
     //     );
     // }
 
-    // const cellStyle = {
-    //   border: '1px solid #555',
-    //   width: '50px',
-    //   height: '50px',
-    //   lineHeight: '50px',
-    //   textAlign: 'center',
-    // };
+    const time = '21:45'
+    // const problem = props.G
+    console.log(props)
+    const problem = [
+      "616d6e0b0ffcbe53972b5365",
+      "616d6ff077641366d53fe05c",
+      "616d73083fc0c875597eb866"
+    ]
+    const index = Math.floor(Math.random() * problem.length)
+    if(problem.length > 0) {
+      localStorage.setItem("problemID", problem[index])
+      problem.splice(index, 1);
+    }
 
-    // let tbody = [];
-    // for (let i = 0; i < 3; i++) {
-    //   let cells = [];
-    //   for (let j = 0; j < 3; j++) {
-    //     const id = 3 * i + j;
-    //     cells.push(
-    //       <td style={cellStyle} key={id} onClick={() => this.onClick(id)}>
-    //         {this.props.G.cells[id]}
-    //       </td>
-    //     );
-    //   }
-    //   tbody.push(<tr key={i}>{cells}</tr>);
-    // }
-
-    const now1 = 40;
-    const now2 = 60;
-    const time = '21:45';
     return (
       <div
         style={{
@@ -66,18 +122,9 @@ export class Board extends React.Component {
             Surrender
           </Button>
         </div>
-        <div className='progressContainer'>
-          <ProgressBar
-            variant='success'
-            className='progressPlayer1'
-            now={now1}
-            label={`${now1}/100`}
-          />
-          <ProgressBar
-            className='progressPlayer2'
-            now={now2}
-            label={`${now2}/100`}
-          />
+        <div className="progressContainer">
+          <ProgressBar  variant ="success" className="progressPlayer1" now={hp1} label={`${hp1}/100`}/>
+          <ProgressBar  className="progressPlayer2"  now={hp2} label={`${hp2}/100`}/>
         </div>
 
         <Image src={skill2naruto} className='skill2naruto' id='skill2naruto' />
@@ -93,5 +140,6 @@ export class Board extends React.Component {
         <Image src={sakura} className='player2' id='player2' />
       </div>
     );
-  }
 }
+
+export default Board;

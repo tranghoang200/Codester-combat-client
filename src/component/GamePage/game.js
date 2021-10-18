@@ -1,29 +1,37 @@
-import { INVALID_MOVE } from 'boardgame.io/core';
-import { useQuery } from '@apollo/client';
-import * as user from '../../Constant/graphql/user';
-import * as champ from '../../Constant/graphql/champ';
+import {ActivePlayers} from 'boardgame.io/core';
+import { useQuery, useMutation } from '@apollo/client';
+import * as game from '../../Constant/graphql/game';
+import * as problem from '../../Constant/graphql/problem';
 
-const GetGameSetUp = () => {
-  const setup = {};
-  // const { loading, error, data } = useQuery(user.GET_USER_BY_ID, {
-  //   variables: { id: localStorage.getItem('player1ID') }
-  // });
-  // const { loadingChamp, errorChamp, dataChamp } = useQuery(champ.GET_CHAMP_BY_ID, {
-  //   variables: { id: localStorage.getItem("champID") }
-  // });
+const setup = {}
 
-  // if (loading) console.log('Loading ...');
-  //   else if (error) console.log(error);
-  //   else {
-  //     setup["player1"] = data.userById;
+const GetGameSetUp = async () => {
+  const { loading, error, data } = await useQuery(problem.GET_All_PROBLEMS_ID);
 
-  // if (loadingChamp) console.log('Loading ...');
-  // else if (errorChamp) console.log(error);
-  // else {
-  // setup["player1"]["champ"] = dataChamp.champById;
-  // }
 
-  //   }
+  const { loadingUpdate, errorUpdate, dataUpdate } = await useMutation(
+    game.CREATE_GAME,
+    {
+      variables: { record: {
+        player1: localStorage.getItem("player1ID"),
+        player2: localStorage.getItem("player2ID"),
+        rank: "616d0a49b799fe8d11303450",
+        problems: data.problemMany.map((item) => item["_id"])
+      }
+      }
+    }
+  );
+
+  const { loadingGame, errorGame, dataGame } = await useQuery(game.GET_GAME);
+
+  if (loadingGame) console.log('Loading ...');
+    else if (errorGame) console.log(errorGame);
+    else {
+      setup = dataGame.gameOne
+    }
+  
+    console.log(setup);
+    return <div></div>;
 
   //   console.log(setup);
   return setup;
@@ -36,8 +44,19 @@ const GetGameSetUp = () => {
   //   }
 };
 
-export const CodesterCombat = {
-  setup: () => GetGameSetUp(),
+export const CodesterComba = {
+  // G: () => {<GetGameSetUp />; return setup},
+
+  G: {
+    player1 : "616d75c43bdf7fee0e2715f4",
+    player2 : "616d75ea3bdf7fee0e2715f9",
+    rank : "616d0a49b799fe8d11303450",
+    problems : [
+      "616d6e0b0ffcbe53972b5365",
+      "616d6ff077641366d53fe05c",
+      "616d73083fc0c875597eb866"
+    ],
+  },
 
   ctx: {
     turn: 0,
@@ -48,11 +67,11 @@ export const CodesterCombat = {
   turn: {
     minMoves: 1,
     maxMoves: 1,
-    // activePlayers: ActivePlayers.ALL
+    activePlayers: ActivePlayers.ALL
   },
 
   moves: {
-    skill1: (G, ctx, id) => {
+    skill1: (G, ctx) => {
       document.getElementById('shuriken').classList.add('skill1-player1');
       document.getElementById('player2').classList.add('wobble_effect');
       setTimeout(() => {
@@ -115,19 +134,7 @@ export const CodesterCombat = {
 
   endIf: (G, ctx) => {
     // if (IsVictory(G.cells)) {
-    //   return { winner: ctx.currentPlayer };
+    //   return {winner: ctx.currentPlayer};
     // }
-  },
-
-  ai: {
-    enumerate: (G, ctx) => {
-      let moves = [];
-      for (let i = 0; i < 9; i++) {
-        if (G.cells[i] === null) {
-          moves.push({ move: 'clickCell', args: [i] });
-        }
-      }
-      return moves;
-    },
   },
 };
