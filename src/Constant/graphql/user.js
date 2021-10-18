@@ -13,13 +13,17 @@ query Query($id: MongoID!) {
 `;
 
 export const GET_ALL_USERS = gql`
-  query Query {
-    userMany {
+query Query {
+  userMany {
+    name
+    rank {
       name
-      rank
-      points
+      _id
     }
+    points
+    _id
   }
+}
 `;
 
 // MUTATION
