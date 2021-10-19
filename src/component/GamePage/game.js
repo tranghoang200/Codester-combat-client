@@ -34,7 +34,7 @@ const GetGameSetUp = async () => {
   // return <div></div>;
 
   //   console.log(setup);
-  return setup;
+  // return setup;
 
   // if (loading) console.log('Loading ...');
   //   else if (error) console.log(error);
@@ -62,15 +62,16 @@ export const CodesterCombat = {
     player2: '616d75ea3bdf7fee0e2715f9',
     rank: '616d0a49b799fe8d11303450',
     problems: [
-      '616d6e0b0ffcbe53972b5365',
-      '616d6ff077641366d53fe05c',
-      '616d73083fc0c875597eb866',
+      '616e016a4a42314a260fd886',
+      '616e02064a42314a260fd88a',
+      '616e02974a42314a260fd88e',
+      '616e033e4a42314a260fd892',
     ],
   },
 
   ctx: {
     turn: 0,
-    currentPlayer: '0',
+    currentPlayer: "0",
     numPlayers: 2,
   },
 
@@ -82,62 +83,62 @@ export const CodesterCombat = {
 
   moves: {
     skill1: (G, ctx) => {
-      document.getElementById('shuriken').classList.add('skill1-player1');
-      document.getElementById('player2').classList.add('wobble_effect');
+      document.getElementById("shuriken").classList.add("skill1-player1");
+      document.getElementById("player2").classList.add("wobble_effect");
       setTimeout(() => {
-        document.getElementById('shuriken').classList.remove('skill1-player1');
+        document.getElementById("shuriken").classList.remove("skill1-player1");
       }, 2000);
       setTimeout(() => {
-        document.getElementById('player2').classList.remove('wobble_effect');
+        document.getElementById("player2").classList.remove("wobble_effect");
       }, 5000);
     },
     heal: (G, ctx, id) => {
-      document.getElementById('heal1').classList.add('heal-player1');
-      document.getElementById('heal2').classList.add('heal-player1');
-      document.getElementById('heal3').classList.add('heal-player1');
-      document.getElementById('heal4').classList.add('heal-player1');
+      document.getElementById("heal1").classList.add("heal-player1");
+      document.getElementById("heal2").classList.add("heal-player1");
+      document.getElementById("heal3").classList.add("heal-player1");
+      document.getElementById("heal4").classList.add("heal-player1");
       setTimeout(() => {
-        document.getElementById('heal1').classList.remove('heal-player1');
-        document.getElementById('heal2').classList.remove('heal-player1');
-        document.getElementById('heal3').classList.remove('heal-player1');
-        document.getElementById('heal4').classList.remove('heal-player1');
+        document.getElementById("heal1").classList.remove("heal-player1");
+        document.getElementById("heal2").classList.remove("heal-player1");
+        document.getElementById("heal3").classList.remove("heal-player1");
+        document.getElementById("heal4").classList.remove("heal-player1");
       }, 1500);
     },
     shield: (G, ctx, id) => {
-      document.getElementById('shield').classList.add('shield-player1');
+      document.getElementById("shield").classList.add("shield-player1");
       setTimeout(() => {
-        document.getElementById('shield').classList.remove('shield-player1');
+        document.getElementById("shield").classList.remove("shield-player1");
       }, 1500);
     },
     skill2naruto: (G, ctx, id) => {
       document
-        .getElementById('skill2naruto')
-        .classList.add('skill2naruto-player1');
-      document.getElementById('player2').classList.add('wobble_effect');
+        .getElementById("skill2naruto")
+        .classList.add("skill2naruto-player1");
+      document.getElementById("player2").classList.add("wobble_effect");
 
       setTimeout(() => {
         document
-          .getElementById('skill2naruto')
-          .classList.remove('skill2naruto-player1');
+          .getElementById("skill2naruto")
+          .classList.remove("skill2naruto-player1");
       }, 1200);
       setTimeout(() => {
-        document.getElementById('player2').classList.remove('wobble_effect');
+        document.getElementById("player2").classList.remove("wobble_effect");
       }, 2700);
     },
     skill2lee: (G, ctx, id) => {
       if (
-        document.getElementById('player1').classList !== 'skill2lee-player1'
+        document.getElementById("player1").classList !== "skill2lee-player1"
       ) {
-        document.getElementById('player1').classList.add('skill2lee-player1');
-        document.getElementById('player2').classList.add('wobble_effect');
+        document.getElementById("player1").classList.add("skill2lee-player1");
+        document.getElementById("player2").classList.add("wobble_effect");
       }
       setTimeout(() => {
         document
-          .getElementById('player1')
-          .classList.remove('skill2lee-player1');
+          .getElementById("player1")
+          .classList.remove("skill2lee-player1");
       }, 2500);
       setTimeout(() => {
-        document.getElementById('player2').classList.remove('wobble_effect');
+        document.getElementById("player2").classList.remove("wobble_effect");
       }, 5000);
     },
   },

@@ -23,14 +23,9 @@ query Query {
 `;
 
 export const UPDATE_POOL = gql`
-mutation Mutation($id: MongoID!, $record: UpdateByIdPoolInput!, $user: String) {
-    poolUpdateById(_id: $id, record: $record, user: $user) {
+mutation Mutation($id: String, $user: String, $poolUpdateByIdId2: MongoID!, $poolUpdateByIdUser2: String, $record: UpdateByIdPoolInput!) {
+    poolUpdateById(_id: $poolUpdateByIdId2, user: $poolUpdateByIdUser2, record: $record) {
       record {
-        rank {
-          name
-          _id
-        }
-        _id
         users {
           name
           rank {

@@ -7,6 +7,9 @@ function countReducer(state, action) {
     case 'updateUserId': {
       return { ...state, userId: action.payload };
     }
+    case 'updateUser2Id': {
+      return { ...state, user2Id: action.payload };
+    }
     case 'updatePlayer1Id': {
       return { ...state, player1Id: action.payload };
     }

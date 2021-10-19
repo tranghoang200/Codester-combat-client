@@ -5,7 +5,10 @@ export const GET_All_PROBLEMS = gql`
 query Query {
     problemMany {
       content
-      rank
+      rank {
+        name
+        _id
+    }
       testCase {
         input
         output
@@ -27,7 +30,10 @@ export const GET_PROBLEM_ID = gql`
 query Query($id: MongoID!) {
     problemById(_id: $id) {
       content
-      rank
+      rank {
+        name
+        _id
+    }
       testCase {
         input
         output

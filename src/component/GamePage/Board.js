@@ -97,9 +97,10 @@ const Board = (props) => {
     // const problem = props.G
     console.log(props)
     const problem = [
-      "616d6e0b0ffcbe53972b5365",
-      "616d6ff077641366d53fe05c",
-      "616d73083fc0c875597eb866"
+      '616e016a4a42314a260fd886',
+      '616e02064a42314a260fd88a',
+      '616e02974a42314a260fd88e',
+      '616e033e4a42314a260fd892',
     ]
     const index = Math.floor(Math.random() * problem.length)
     if(problem.length > 0) {

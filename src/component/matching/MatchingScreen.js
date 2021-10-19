@@ -6,20 +6,21 @@ import { useQuery, useMutation } from '@apollo/client';
 import * as pool from '../../Constant/graphql/pool';
 import { useGlobal } from '../../globalContext';
 
+let i = 0;
+
 function MatchingScreen() {
   const { state, dispatch } = useGlobal();
+  const [poolId, setPoolId] = useState('');
   console.log(state);
 
   const history = useHistory();
   const [pools, setPools] = useState([]);
-  const { loadingUpdate, errorUpdate, dataUpdate } = useMutation(
-    pool.UPDATE_POOL,
-    {
-      variables: {
-        id: '616d5ec39a4a4c00d5f23bdd',
-        record: {},
-        user: '616d75c43bdf7fee0e2715f4',
-      },
+  const [createPool, { loading: loadingUpdate, error: errorUpdate, data: dataUpdate}] = useMutation(
+    pool.UPDATE_POOL, {
+      onCompleted(data) {
+        console.log(data)
+        setPoolId(data);
+      }
     }
   );
 
@@ -30,29 +31,35 @@ function MatchingScreen() {
   // }
 
   useEffect(() => {
-    if (loadingUpdate) console.log('Loading ...');
-    else if (errorUpdate) console.log(errorUpdate);
-    else {
-      console.log(data);
       if (loading) console.log('Loading ...');
       else if (error) console.log(error);
       else {
         setPools(data.poolOne);
       }
-    }
-  }, [data, dataUpdate]);
+  }, [pools]);
+
+  console.log(state)
 
   useEffect(() => {
-    if (pools.users) {
-      createRoom();
+    if(i > 0) {
+      createPool({
+        variables: {
+          id: '616d579f86239778e0c69e3b',
+          record: {},
+          user: state.userId,
+        },
+      })
+      i -= 1
     }
-  }, [pools]);
+    
+  }, []);
 
   const createRoom = async () => {
     const users = pools.users;
     console.log(users);
     if (users && users.length == 2) {
-      dispatch({ type: 'updateUserId', payload: '616d75c43bdf7fee0e2715f4' });
+      dispatch({ type: 'updateUserId', payload:  users[0]});
+      dispatch({ type: 'updateUser2Id', payload:  users[1]});
     }
 
     const lobbyClient = new LobbyClient({ server: 'http://localhost:8000' });
@@ -66,6 +73,8 @@ function MatchingScreen() {
       history.push(`/player/${matchID}`);
     }, 5000);
   };
+
+  createRoom();
 
   return (
     <div className='matchingScreen'>

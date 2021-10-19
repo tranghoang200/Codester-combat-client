@@ -33,7 +33,7 @@ const GamePage = (props) => {
   const [problemContent, setProblemContent] = useState({});
 
   const dataProblem = useQuery(problem.GET_PROBLEM_ID, {
-    variables: { id: localStorage.getItem('problemID') },
+    variables: { id: localStorage.getItem("problemID")},
   });
 
   console.log(props)
@@ -47,6 +47,12 @@ const GamePage = (props) => {
       else setProblemContent(dataProblem.data.problemById);
     }
   }, [dataProblem]);
+  const problemID = [
+    '616e016a4a42314a260fd886',
+    '616e02064a42314a260fd88a',
+    '616e02974a42314a260fd88e',
+    '616e033e4a42314a260fd892',
+  ]
 
   const handleClickSkill = (skill) => {
     document.getElementById(activeSkill).classList.remove("skillButtonClicked");
@@ -55,7 +61,11 @@ const GamePage = (props) => {
     document.getElementById(skill).classList.add("skillButtonClicked");
     localStorage.setItem('skill', skill + ' ' + champion[skill]);
     setActiveSkill(skill)
-    
+    const index = Math.floor(Math.random() * problemID.length)
+  if(problemID.length > 0) {
+    localStorage.setItem("problemID", problemID[index])
+    problemID.splice(index, 1);
+  }
   }
 
   if(dataProblem.data == undefined || problemContent == {}) {

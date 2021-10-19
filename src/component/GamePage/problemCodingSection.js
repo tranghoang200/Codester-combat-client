@@ -3,6 +3,7 @@ import {Row, Col, Button, Form, Spinner} from 'react-bootstrap';
 import Editor from '@monaco-editor/react';
 import Split from 'react-split';
 import axios from 'axios';
+import { isOutputType } from 'graphql';
 
 const ProblemCodingSection = (props) => {
   const [code, setCode] = useState('');
@@ -44,9 +45,8 @@ const ProblemCodingSection = (props) => {
     });
   };
 
-  const submitCodeHandler = () => {
+  const submitCodeHandler = (encodedInput) => {
     const encodedSourceCode = Buffer.from(code).toString('base64');
-    const encodedInput = Buffer.from(props.input).toString('base64');
     setIsRunCoding(true);
     const options = {
       method: 'POST',
@@ -104,14 +104,27 @@ const ProblemCodingSection = (props) => {
     setIsRunCoding(false);
   };
 
+  const runCodeHandler = () => { 
+    const encodedInput = Buffer.from(props.input).toString('base64');
+    submitCodeHandler(encodedInput);
+  }
+
   const submitAllHandler = () => {
-    const skillData = localStorage.getItem('skill').split(' ');
-    console.log(skillData)
-    localStorage.setItem("activeSkill", skillData[0]);
-    localStorage.setItem("affect", skillData[1])
+    // const skillData = localStorage.getItem('skill').split(' ');
+    // console.log(skillData)
+    // localStorage.setItem("activeSkill", skillData[0]);
+    // localStorage.setItem("affect", skillData[1])
+    const encodedInput = Buffer.from(props.problemContent.testCase.input).toString('base64');
+    submitCodeHandler(encodedInput)
+
+    return props.output === props.problemContent.testCase.output;
   }
 
   console.log(props.problemContent)
+  if(props.problemContent == null) {
+    return <div>Loading ... </div>
+  }
+
 
   return (
     <Split className="split">

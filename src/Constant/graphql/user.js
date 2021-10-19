@@ -28,21 +28,19 @@ query Query {
 
 // MUTATION
 export const CREATE_USER = gql`
-  mutation Mutation($name: String) {
-    createUser(name: $name) {
-      id
+mutation Mutation($name: String, $rank: String) {
+  userCreateOne(name: $name, rank: $rank) {
+    record {
       name
       rank {
-        id
         name
-        createAt
-        updateAt
+        _id
       }
       points
-      createdAt
-      updatedAt
+      _id
     }
   }
+}
 `;
 
 // export const GET_ALL_USERS = gql`

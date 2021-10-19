@@ -6,7 +6,10 @@ query Query {
     gameOne {
       player1
       player2
-      rank
+      rank {
+          name
+          _id
+      }
       problems
       winner
       _id
@@ -22,7 +25,10 @@ mutation Mutation($record: CreateOneGameInput!) {
       record {
         player1
         player2
-        rank
+        rank {
+            name
+            _id
+        }
         problems
         winner
       }
