@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Row, Col, Button, Form, Spinner} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Button, Form, Spinner } from 'react-bootstrap';
 import Editor from '@monaco-editor/react';
 import Split from 'react-split';
 import axios from 'axios';
@@ -51,7 +51,7 @@ const ProblemCodingSection = (props) => {
     const options = {
       method: 'POST',
       url: 'https://judge0-ce.p.rapidapi.com/submissions',
-      params: {base64_encoded: 'true', fields: '*'},
+      params: { base64_encoded: 'true', fields: '*' },
       headers: {
         'content-type': 'application/json',
         'x-rapidapi-host': 'judge0-ce.p.rapidapi.com',
@@ -81,7 +81,7 @@ const ProblemCodingSection = (props) => {
     const options = {
       method: 'GET',
       url: `https://judge0-ce.p.rapidapi.com/submissions/${tokenOutput}`,
-      params: {base64_encoded: 'true', fields: '*'},
+      params: { base64_encoded: 'true', fields: '*' },
       headers: {
         'x-rapidapi-host': 'judge0-ce.p.rapidapi.com',
         'x-rapidapi-key': 'b8d921310dmsh06f2a740c489d7bp1d2436jsnda03abdd7f4c',
@@ -104,32 +104,33 @@ const ProblemCodingSection = (props) => {
     setIsRunCoding(false);
   };
 
-  const runCodeHandler = () => { 
+  const runCodeHandler = () => {
     const encodedInput = Buffer.from(props.input).toString('base64');
     submitCodeHandler(encodedInput);
-  }
+  };
 
   const submitAllHandler = () => {
     // const skillData = localStorage.getItem('skill').split(' ');
     // console.log(skillData)
     // localStorage.setItem("activeSkill", skillData[0]);
     // localStorage.setItem("affect", skillData[1])
-    const encodedInput = Buffer.from(props.problemContent.testCase.input).toString('base64');
-    submitCodeHandler(encodedInput)
+    const encodedInput = Buffer.from(
+      props.problemContent.testCase.input
+    ).toString('base64');
+    submitCodeHandler(encodedInput);
 
     return props.output === props.problemContent.testCase.output;
-  }
+  };
 
-  console.log(props.problemContent)
-  if(props.problemContent == null) {
-    return <div>Loading ... </div>
+  console.log(props.problemContent);
+  if (props.problemContent == null) {
+    return <div>Loading ... </div>;
   }
-
 
   return (
-    <Split className="split">
-      <div className="section">{props.problemContent.content}</div>
-      <div className="section" style={{marginLeft: '10px'}}>
+    <Split className='split'>
+      <div className='section'>{props.problemContent.content}</div>
+      <div className='section' style={{ marginLeft: '10px' }}>
         <Row>
           <Col>Language</Col>
           <Col>
@@ -139,17 +140,17 @@ const ProblemCodingSection = (props) => {
           </Col>
         </Row>
         <Editor
-          height="44vh"
-          style={{overflow: 'auto'}}
-          theme="vs-dark"
+          height='44vh'
+          style={{ overflow: 'auto' }}
+          theme='vs-dark'
           defaultLanguage={selectedLanguage.split(' ')[1]}
           onChange={(value, event) => setCode(value)}
         />
-        <div style={{float: 'right'}}>
+        <div style={{ float: 'right' }}>
           {!isRunCoding && (
             <Button
-              variant="dark"
-              bsPrefix="btn runCodeBtn"
+              variant='dark'
+              bsPrefix='btn runCodeBtn'
               onClick={submitCodeHandler}
             >
               Run Code
@@ -157,22 +158,25 @@ const ProblemCodingSection = (props) => {
           )}
           {isRunCoding && (
             <Button
-              variant="dark"
-              bsPrefix="btn runCodeBtn"
+              variant='dark'
+              bsPrefix='btn runCodeBtn'
               onClick={submitCodeHandler}
               disabled
             >
-              <Spinner as="span" animation="border" size="sm" role="status" />
+              <Spinner as='span' animation='border' size='sm' role='status' />
               Run Code
             </Button>
           )}
           {isRunCoding && (
-           
-            <Button variant="success" disabled> 
+            <Button variant='success' disabled>
               Submit Code
             </Button>
           )}
-          {!isRunCoding && <Button variant="success" onClick={submitAllHandler}>Submit Code</Button>}
+          {!isRunCoding && (
+            <Button variant='success' onClick={submitAllHandler}>
+              Submit Code
+            </Button>
+          )}
         </div>
       </div>
     </Split>
