@@ -5,12 +5,12 @@ import {
 } from 'react-bootstrap';
 
 import headerImageDefeat from '../../img/Defeat.png';
-import headerImageVictory from '../../img/Victory.png';
-import './gameResult.css';
+// import headerImageVictory from '../../img/Victory.png';
+import './gameResultDefeat.css';
 import { useQuery } from '@apollo/client';
 import * as user from '../../Constant/graphql/user';
 
-const headerImage = headerImageVictory;
+const headerImage = headerImageDefeat;
 
 const GameResult = (props) => { 
   const { loading, error, data } = useQuery(user.GET_ALL_USERS);
@@ -26,7 +26,7 @@ const GameResult = (props) => {
   userList = userList.slice(0,8);
   const renderUser = () => {
     return userList.map((item, index) => {
-      return <Row className="leaderboard-row">
+      return <Row className="leaderboard-row-lose">
       <Col>{index+1}</Col>
       <Col>{item.name}</Col>
       <Col>{item.rank.name}</Col>

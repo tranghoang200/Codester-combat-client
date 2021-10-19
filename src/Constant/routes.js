@@ -5,3 +5,4 @@ export const GAME = '/game/:matchID';
 export const PLAYER_SELECTION = '/player/:matchID';
 export const MATCHING_SCREEN = '/matching';
 export const GAME_RESULT = '/game-result';
+export const GAME_RESULT_DEFEAT = '/game-result-defeat';

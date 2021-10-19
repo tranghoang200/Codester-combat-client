@@ -10,10 +10,10 @@
     text-align: center;
     margin-top: 120px;
     border-radius: 20px;
-    border: 3px solid yellow;
+    border: 3px solid rgb(144, 26, 199);
 }
 
-.leaderboard-row {
+.leaderboard-row-lose {
     margin: auto;
     margin-bottom: 5px;
     margin-bottom: 0;
@@ -36,10 +36,10 @@
         transform: scale(1.1);
     }
 }
-.leaderboard-row:nth-child(5) {
-    background-color: #e48519;
+.leaderboard-row-lose:nth-child(7) {
+    background-color: #8a278d;
     animation: zoom 20s infinite ease-in-out;
-    filter: drop-shadow(0 0 6px #dda148);
+    filter: drop-shadow(0 0 6px #54108b);
 }
 
 
@@ -53,9 +53,9 @@
 }
 .victoryImg {
     position: absolute;
-    height: 500px;
-    width: 500px;
-    top: 1%;
+    height: 180px;
+    width: 220px;
+    top: 12%;
 }
  .user {
     /* background-color: #39485E; */
