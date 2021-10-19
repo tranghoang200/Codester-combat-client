@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import PlayerCard from './PlayerCard';
 import background from '../../img/background_pick_char.png';
-import {Row} from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import './SelectionScreen.css';
 import * as champ from '../../Constant/graphql/champ';
-import {useQuery} from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import characterStyle from './CharacterList';
 
 function SelectionScreen() {
   const [characterList, setCharacterList] = useState([]);
-  const {loading, error, data} = useQuery(champ.GET_CHAMPS);
+  const { loading, error, data } = useQuery(champ.GET_CHAMPS);
 
   useEffect(() => {
     if (loading) console.log('Loading ...');
@@ -21,9 +21,9 @@ function SelectionScreen() {
   }, [data]);
 
   return (
-    <div className="cardBox" style={{backgroundImage: `url(${background})`}}>
+    <div className='cardBox' style={{ backgroundImage: `url(${background})` }}>
       <Row>
-        <h1 className="chooseCharText">CHOOSE YOUR CHARACTER</h1>
+        <h1 className='chooseCharText'>CHOOSE YOUR CHARACTER</h1>
       </Row>
       <Row>
         {characterList.map((character, index) => {

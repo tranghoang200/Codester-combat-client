@@ -2,39 +2,42 @@ import { ActivePlayers } from 'boardgame.io/core';
 import { useQuery, useMutation } from '@apollo/client';
 import * as game from '../../Constant/graphql/game';
 import * as problem from '../../Constant/graphql/problem';
+import { useGlobal } from '../../globalContext';
+import * as champ from '../../Constant/graphql/champ';
 
 const setup = {};
 
 const GetGameSetUp = async () => {
-  const { loading, error, data } = await useQuery(problem.GET_All_PROBLEMS_ID);
+  const { state } = useGlobal();
 
-  const { loadingUpdate, errorUpdate, dataUpdate } = await useMutation(
-    game.CREATE_GAME,
-    {
-      variables: {
-        record: {
-          player1: localStorage.getItem('player1ID'),
-          player2: localStorage.getItem('player2ID'),
-          rank: '616d0a49b799fe8d11303450',
-          problems: data.problemMany.map((item) => item['_id']),
-        },
+  const { data: champId } = await useQuery(champ.GET_CHAMP_BY_ID, {
+    variables: { id: state.champId },
+  });
+  const { data: problems } = await useQuery(problem.GET_All_PROBLEMS_ID);
+
+  const [createGame] = useMutation(game.CREATE_GAME, {
+    onCompleted(data) {
+      console.log(data);
+    },
+  });
+
+  const gameData = await createGame({
+    variables: {
+      record: {
+        player1: state.player1Id,
+        player2: state.player2Id,
+        rank: '616d0a49b799fe8d11303450',
+        problems: problems.problemMany.map((item) => item['_id']),
       },
-    }
-  );
+    },
+  });
 
-  const { loadingGame, errorGame, dataGame } = await useQuery(game.GET_GAME);
+  console.log('gameData', gameData);
 
-  if (loadingGame) console.log('Loading ...');
-  else if (errorGame) console.log(errorGame);
-  else {
-    setup = dataGame.gameOne;
-  }
-
-  console.log(setup);
   // return <div></div>;
 
   //   console.log(setup);
-  // return setup;
+  return gameData;
 
   // if (loading) console.log('Loading ...');
   //   else if (error) console.log(error);
@@ -74,12 +77,30 @@ export const CodesterCombat = {
     currentPlayer: "0",
     numPlayers: 2,
   },
+  // setup: () => GetGameSetUp(),
 
-  turn: {
-    minMoves: 1,
-    maxMoves: 1,
-    activePlayers: ActivePlayers.ALL,
-  },
+  // G: {
+  //   player1: '616d75c43bdf7fee0e2715f4',
+  //   player2: '616d75ea3bdf7fee0e2715f9',
+  //   rank: '616d0a49b799fe8d11303450',
+  //   problems: [
+  //     '616d6e0b0ffcbe53972b5365',
+  //     '616d6ff077641366d53fe05c',
+  //     '616d73083fc0c875597eb866',
+  //   ],
+  // },
+
+  // ctx: {
+  //   turn: 0,
+  //   currentPlayer: '0',
+  //   numPlayers: 2,
+  // },
+
+  // turn: {
+  //   minMoves: 1,
+  //   maxMoves: 1,
+  //   activePlayers: ActivePlayers.ALL,
+  // },
 
   moves: {
     skill1: (G, ctx) => {
